@@ -10,6 +10,11 @@ def index():
     makeQR(name, link)
     return render_template("index.html")
 
+@app.route("/result", methods = ['POST', 'GET'])
+def result():
+	if request.method == 'POST':
+		return render_template("result.html", name = name)
+
 def makeQR(name, link):
     qr = qrcode.make(name + "のWebサイト -> " + link)
     qr.save('static/result/MySite.png')
